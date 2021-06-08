@@ -544,5 +544,10 @@ Algunas cuestiones finales:
 - Todas las visualizaciones se pueden incorporar en ficheros Rmarkdown para
 una investigación reproducible.
 
+- Cualquier gráfico realizado con `ggplot2` se puede convertir a gráfico
+interactivo con la función `ggplotly` del paquete `plotly`.
 
+```{r, eval=FALSE}
+res.shiny=CAshiny(analisis)
+```
 
