@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Análisis de correspondencias con R: aplicación a datos de encuestas</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emilio López Cano" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Análisis de correspondencias con R: aplicación a datos de encuestas
+## III Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud
+### Emilio López Cano
+### 2019-05-23, Alcorcón
+
+---
+
+
+
+
+background-image: url(./img/emilio.png)
+background-size: 120px
+background-position: 95% 6%
+
+# Emilio L. Cano
+
+- Profesor contratado doctor en la  **Universidad de Castilla-La Mancha**
+
+- Profesor colaborador en la **Universidad Rey Juan Carlos**
+
+- Investigador en el **Instituto de Desarrollo Regional (IDR)** 
+
+- Sección **Métodos cuantitativos y desarrollo socioeconómico (MECYDES)** del IDR
+
+- **Grupo de Investigación en Técnicas Estadísticas y de Clasificación Aplicadas (GITECA)** de la UCLM
+
+- Formador en la Asociación Española para la Calidad (AEC) y miembro del subcomité técnico de normalización UNE-CTN66/SC3
+
+.small[
+.blue[**Formación académica**]: Doctor y Master en Ingeniería de Sistemas de Decisión (URJC), Graduado en Estadística Aplicada (Universidad Complutense)  
+.blue[**Cursos**] (sel.): IRYCIS, TetraPak, BSH, Lactalis, Nutreco, Carbures, Berlys, Deutz, ...  
+.blue[**Experiencia**]: Distribución, consultoría, promoción inmobiliaria, investigación y docencia
+
+.alfondo[.centro[emilio.lcano@uclm.es | http://blog.uclm.es/emiliolcano | +34 665 676 225]]
+]
+
+.poolv[![](./img/pool_logos_v.png)]
+
+???
+
+Emilio is a Statistitian that serves as associate professor at the University of Castilla-La Mancha in Spain, doing his research within the Quantitative Methods and Socio-economic Development section at the Institute for Regional Development, and within the Research group on Applied Statistical and Classification Techniques. He also contributes to the Spanish Association for Quality and to UNE, the Spanish member of ISO.
+
+---
+
+class: middle, toc
+
+# Contenidos
+
+1. Datos de atributos (¿o no?)
+
+2. Modelo de análisis de correspondencias y datos obtenidos
+
+3. Visualización de los resultados
+
+4. Visualización impactante y dinámica
+
+
+???
+
+
+---
+
+class: middle, center, toc
+
+# Datos de atributos (¿o no?)
+
+???
+
+---
+
+class: middle, center, toc
+
+# Datos de atributos (¿o no?)
+
+???
+
+
+---
+
+class: large
+
+# Datos de atributos indiscutibles
+
+- Sexo
+
+- Profesión
+
+- Estado civil, ...
+
+???
+
+---
+class: large
+
+# Datos de atributos en duda
+
+- Discretización de datos en escala métrica
+
+- Datos ordinales
+
+- Escalas (e.g., Likert)
+
+
+
+---
+class: large
+
+# ¿Qué hacemos con las escalas?
+
+- En general, no es buena idea tratarlas como si fueran métricas
+
+- Aunque hay autores que lo defienden
+
+- IMHO, solo debería hacerse cuando hay muchos datos (al menos 100)
+
+- Y mejor utilizar medianas y métodos no paramétricos 
+
+--
+
+- O bien: tratar como atributos (que lo son, aunque ordenados)
+
+
+---
+class: large
+
+# Análisis exploratorio
+
+- Tablas de frecuencias
+
+- Gráficos de mosaico
+
+- Otros gráficos
+
+
+---
+class: large
+
+# Medidas de asociación
+
+- Test chi-cuadrado
+
+- Se contrasta la hipótesis de independencia
+
+- Hipótesis nula: no hay asociación
+
+- p-valor pequeño: los atributos están relacionados
+
+
+
+
+---
+
+class: large, bottom, center, practice
+background-image: url(img/practice.png)
+background-position: 50% -10%
+background-size: 60%
+
+# Práctica
+
+Análisis exploratorio de datos y medidas de asociación
+
+---
+
+class: middle, center, toc
+
+# Modelo de análisis de correspondencias y datos obtenidos
+
+???
+
+
+---
+
+class: large
+
+# El paquete FactoMineR
+
+- R base tiene una función: `ca`
+
+- Pero el paquete `FactoMineR` ofrece muchas más posibilidades
+
+- Sobre todo, combinado con funciones de visualización del paquete `factoextra`
+
+???
+
+
+---
+class: large
+
+# El objeto CA
+
+Lista de 5 elementos, algunos son listas
+
+- eig: los autovalores, nos indican la varianza explicada
+- col: resultados de las columnas (coord, cos2, contrib)
+- row: resultados de las filas (igual)
+- call: resumen (tabla de contingencia, marginales, ...)
+
+
+---
+class: large
+
+# La salida de la función
+
+- print: simplemente los elementos del objeto
+
+- summary: resumen (muy completo)
+
+  - Prueba chi-cuadrado
+  - Autovalores y % acumulado de varianza
+  - Inercias, coordenadas, contribución y calidad de filas y columnas en cada dimensión.
+
+---
+
+class: large, bottom, center, practice
+background-image: url(img/practice.png)
+background-position: 50% -10%
+background-size: 60%
+
+# Práctica
+
+El paquete FactoMineR
+
+---
+
+class: middle, center, toc
+
+# Visualización de los resultados
+
+???
+
+---
+
+class: large
+
+# Visualización de los resultados
+
+- Usaremos el paquete `factoextra`
+
+- Gráficos de diagnóstico
+
+- Mapas perceptuales
+
+--
+
+- Construcción de gráficos a partir de los datos
+
+???
+
+
+
+---
+class: large
+
+# Gráficos de diagnóstico
+
+- Por categorías fila o columna
+
+- Calidad de representación
+
+- Contribución a la dimensión
+
+---
+class: large
+# Mapas perceptuales
+
+- Similaridad (proximidad) entre categorías de distintos atributos
+
+- Interpretación de las dimensiones
+
+---
+class: large
+
+# Categorías suplementarias
+
+- Por filas o por columnas
+
+- No se usan para crear las dimensiones
+
+- Nos sirven para predecir dónde estarán ciertas categorías.
+
+---
+
+class: large, bottom, center, practice
+background-image: url(img/practice.png)
+background-position: 50% -10%
+background-size: 60%
+
+# Práctica
+
+Visualización avanzada
+
+---
+
+class: large
+
+# Análisis de correspondencias múltiple
+
+- Más de dos atributos
+
+- Se complica la interpretación
+
+- Y también el análisis
+
+- Podemos identificar patrones para "bajar" al simple
+
+---
+
+class: middle, center, toc
+
+# Visualización impactante y dinámica
+
+???
+
+---
+
+class: large
+
+# Visualización impactante y dinámica
+
+- Gráficos interactivos
+
+- Animaciones
+
+- Paquete `plotly`
+
+--
+
+- Informes reproducibles con Rmarkdown
+- Documentos y aplicaciones interactivas con Shiny
+- El paquete `Factoshiny`
+
+???
+
+---
+
+class: large, bottom, center, practice
+background-image: url(img/practice.png)
+background-position: 50% -10%
+background-size: 60%
+
+# Práctica
+
+Gráficos interactivos y animados con `plotly`
+
+---
+class: inverse, middle, center
+
+# Gracias por la atención
+
+http://blog.uclm.es/emiliolcano
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
