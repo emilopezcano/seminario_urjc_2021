@@ -2,7 +2,7 @@
 title: "Análisis de correspondencias con R: aplicación a datos de encuestas"
 subtitle: "IV Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud"
 author: "Emilio López Cano"
-date: "2019-06-09, Alcorcón"
+date: "2021-06-09, Alcorcón"
 output:
   xaringan::moon_reader:
     css: my-theme.css
