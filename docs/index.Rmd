@@ -28,7 +28,7 @@ Las diapositivas del seminario se encuentran en: https://emilopezcano.github.io/
 
 Más ejemplos y explicaciones en mi libro de apuntes [Análisis de datos con R](http://emilio.lcano.com/b/adr/) (licencia CC).
 
-Todo el material en: https://emilopezcano.github.io/seminario_urjc_2021/
+Todo el material en: https://github.com/emilopezcano/seminario_urjc_2021
 
 
 
