@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Análisis de correspondencias con R: aplicación a datos de encuestas</title>
     <meta charset="utf-8" />
     <meta name="author" content="Emilio López Cano" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
@@ -11,47 +12,51 @@
 class: center, middle, inverse, title-slide
 
 # Análisis de correspondencias con R: aplicación a datos de encuestas
-## III Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud
+## IV Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud
 ### Emilio López Cano
-### 2019-05-23, Alcorcón
+### 2019-06-09, Alcorcón
 
 ---
 
 
 
 
+
 background-image: url(./img/emilio.png)
 background-size: 120px
-background-position: 95% 6%
+background-position: 95% 4%
 
 # Emilio L. Cano
 
-- Profesor contratado doctor en la  **Universidad de Castilla-La Mancha**
+.sangria200[
 
-- Profesor colaborador en la **Universidad Rey Juan Carlos**
 
-- Investigador en el **Instituto de Desarrollo Regional (IDR)** 
+- Profesor ayudante doctor en la **Universidad Rey Juan Carlos**,   
+Escuela Técnica Superior de Ingeniería Informática
 
-- Sección **Métodos cuantitativos y desarrollo socioeconómico (MECYDES)** del IDR
+- Investigador grupo de investigación de alto rendimiento en Fundamentos y Aplicaciones de la
+Ciencia de Datos de la URJC (**Data Science Laboratory**)
 
-- **Grupo de Investigación en Técnicas Estadísticas y de Clasificación Aplicadas (GITECA)** de la UCLM
+- Investigador y profesor colaborador en la Universidad de Castilla-La Mancha.
 
-- Formador en la Asociación Española para la Calidad (AEC) y miembro del subcomité técnico de normalización UNE-CTN66/SC3
+- Formador en la [Asociación Española para la Calidad](http://www.aec.es) (AEC)
+
+- Presidente subcomité técnico de normalización UNE-CTN66/SC3, .red[Métodos Estadísticos] (miembro ISO TC 69). 
+
+- Presidente [Comunidad R-Hispano](http://r-es.org).
+]
 
 .small[
 .blue[**Formación académica**]: Doctor y Master en Ingeniería de Sistemas de Decisión (URJC), Graduado en Estadística Aplicada (Universidad Complutense)  
-.blue[**Cursos**] (sel.): IRYCIS, TetraPak, BSH, Lactalis, Nutreco, Carbures, Berlys, Deutz, ...  
+.blue[**Cursos**] (sel.): Petronor, Deutz, Gestamp, TetraPak, BSH, Lactalis, Nutreco, Carbures, Berlys, Sariki, Metro de Madrid, IRYCIS, ...  
 .blue[**Experiencia**]: Distribución, consultoría, promoción inmobiliaria, investigación y docencia
 
-.alfondo[.centro[emilio.lcano@uclm.es | http://blog.uclm.es/emiliolcano | +34 665 676 225]]
+.alfondo[.centro[emilio@lcano.com | http://emilio.lcano.com | +34 665 676 225]]
 ]
 
-.poolv[![](./img/pool_logos_v.png)]
+.poolv[![](./img/pool_logos_v_urjc.png)]
 
 ???
-
-Emilio is a Statistitian that serves as associate professor at the University of Castilla-La Mancha in Spain, doing his research within the Quantitative Methods and Socio-economic Development section at the Institute for Regional Development, and within the Research group on Applied Statistical and Classification Techniques. He also contributes to the Spanish Association for Quality and to UNE, the Spanish member of ISO.
-
 ---
 
 class: middle, toc
@@ -117,7 +122,7 @@ class: large
 ---
 class: large
 
-# ¿Qué hacemos con las escalas?
+# ¿Qué hacemos con las ordinales?
 
 - En general, no es buena idea tratarlas como si fueran métricas
 
@@ -130,6 +135,8 @@ class: large
 --
 
 - O bien: tratar como atributos (que lo son, aunque ordenados)
+
+- También transformar en índices (TCL)
 
 
 ---
@@ -157,7 +164,11 @@ class: large
 
 - p-valor pequeño: los atributos están relacionados
 
+----
 
+--
+
+Medidas independientes de la escala: V de Cramer, coeficiente de contingencia, coeficiente `\(\phi\)`
 
 
 ---
@@ -352,7 +363,7 @@ background-size: 60%
 
 # Práctica
 
-Gráficos interactivos y animados con `plotly`
+Gráficos interactivos y animados con `plotly`; `Factoshiny`
 
 ---
 class: inverse, middle, center
@@ -360,6 +371,8 @@ class: inverse, middle, center
 # Gracias por la atención
 
 http://blog.uclm.es/emiliolcano
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -406,9 +419,25 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -417,7 +446,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {

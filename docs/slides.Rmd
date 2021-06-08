@@ -1,8 +1,8 @@
 ---
 title: "Análisis de correspondencias con R: aplicación a datos de encuestas"
-subtitle: "III Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud"
+subtitle: "IV Seminario Análisis de datos avanzados<br/>en Ciencias de la Salud"
 author: "Emilio López Cano"
-date: "2019-05-23, Alcorcón"
+date: "2019-06-09, Alcorcón"
 output:
   xaringan::moon_reader:
     css: my-theme.css
@@ -18,38 +18,42 @@ options(htmltools.dir.version = FALSE)
 slide <- TRUE
 ```
 
+
 background-image: url(./img/emilio.png)
 background-size: 120px
-background-position: 95% 6%
+background-position: 95% 4%
 
 # Emilio L. Cano
 
-- Profesor contratado doctor en la  **Universidad de Castilla-La Mancha**
+.sangria200[
 
-- Profesor colaborador en la **Universidad Rey Juan Carlos**
 
-- Investigador en el **Instituto de Desarrollo Regional (IDR)** 
+- Profesor ayudante doctor en la **Universidad Rey Juan Carlos**,   
+Escuela Técnica Superior de Ingeniería Informática
 
-- Sección **Métodos cuantitativos y desarrollo socioeconómico (MECYDES)** del IDR
+- Investigador grupo de investigación de alto rendimiento en Fundamentos y Aplicaciones de la
+Ciencia de Datos de la URJC (**Data Science Laboratory**)
 
-- **Grupo de Investigación en Técnicas Estadísticas y de Clasificación Aplicadas (GITECA)** de la UCLM
+- Investigador y profesor colaborador en la Universidad de Castilla-La Mancha.
 
-- Formador en la Asociación Española para la Calidad (AEC) y miembro del subcomité técnico de normalización UNE-CTN66/SC3
+- Formador en la [Asociación Española para la Calidad](http://www.aec.es) (AEC)
+
+- Presidente subcomité técnico de normalización UNE-CTN66/SC3, .red[Métodos Estadísticos] (miembro ISO TC 69). 
+
+- Presidente [Comunidad R-Hispano](http://r-es.org).
+]
 
 .small[
 .blue[**Formación académica**]: Doctor y Master en Ingeniería de Sistemas de Decisión (URJC), Graduado en Estadística Aplicada (Universidad Complutense)  
-.blue[**Cursos**] (sel.): IRYCIS, TetraPak, BSH, Lactalis, Nutreco, Carbures, Berlys, Deutz, ...  
+.blue[**Cursos**] (sel.): Petronor, Deutz, Gestamp, TetraPak, BSH, Lactalis, Nutreco, Carbures, Berlys, Sariki, Metro de Madrid, IRYCIS, ...  
 .blue[**Experiencia**]: Distribución, consultoría, promoción inmobiliaria, investigación y docencia
 
-.alfondo[.centro[emilio.lcano@uclm.es | http://blog.uclm.es/emiliolcano | +34 665 676 225]]
+.alfondo[.centro[emilio@lcano.com | http://emilio.lcano.com | +34 665 676 225]]
 ]
 
-.poolv[![](./img/pool_logos_v.png)]
+.poolv[![](./img/pool_logos_v_urjc.png)]
 
 ???
-
-Emilio is a Statistitian that serves as associate professor at the University of Castilla-La Mancha in Spain, doing his research within the Quantitative Methods and Socio-economic Development section at the Institute for Regional Development, and within the Research group on Applied Statistical and Classification Techniques. He also contributes to the Spanish Association for Quality and to UNE, the Spanish member of ISO.
-
 ---
 
 class: middle, toc
@@ -115,7 +119,7 @@ class: large
 ---
 class: large
 
-# ¿Qué hacemos con las escalas?
+# ¿Qué hacemos con las ordinales?
 
 - En general, no es buena idea tratarlas como si fueran métricas
 
@@ -128,6 +132,8 @@ class: large
 --
 
 - O bien: tratar como atributos (que lo son, aunque ordenados)
+
+- También transformar en índices (TCL)
 
 
 ---
@@ -155,7 +161,11 @@ class: large
 
 - p-valor pequeño: los atributos están relacionados
 
+----
 
+--
+
+Medidas independientes de la escala: V de Cramer, coeficiente de contingencia, coeficiente $\phi$
 
 
 ---
@@ -350,7 +360,7 @@ background-size: 60%
 
 # Práctica
 
-Gráficos interactivos y animados con `plotly`
+Gráficos interactivos y animados con `plotly`; `Factoshiny`
 
 ---
 class: inverse, middle, center
