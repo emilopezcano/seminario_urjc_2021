@@ -1,7 +1,7 @@
 ---
 title: "Visualización avanzada para análisis de correspondencias con R"
 author: "Emilio López cano"
-date: "2021-06-08"
+date: "2021-06-09"
 output: 
   html_document: 
     highlight: tango
@@ -150,9 +150,29 @@ Para que el test sea válido, deberíamos tener al menos una frecuencia de 5 en 
 cruce. En ocasiones esto se consigue uniendo categorías (por ejemplo, reducir de cinco a tres).
 En principio, podemos ver que la rigidez y el sexo están relacionados.
 
+
+Hay otras medidas de asociación que pueden ser interesantes, como la V de Cramer.
+
+```{r}
+library(vcd)
+assocstats(freqs)
+```
+
+
+
+Por último, el propio paquete `likert` nos proporciona una visualización
+muy adecuada para estas escalas.
+
+```{r, fig.width=8}
+library(likert)
+li <- likert(ansiedad[, 2:9])
+plot(li)
+```
+
+
 ## Modelo de análisis de correspondencias y datos obtenidos
 
-La instalación `base` de R tiene una función para realizar análisis de correpondencias
+La instalación `base` de R tiene una función para realizar análisis de correspondencias
 (`ca`). No obstante, vamos a utilizar directamente el paquete `FactoMineR`, ya que ofrece muchas más posibilidades.
 Sobre todo, combinado con funciones de visualización del paquete `factoextra`.
 
