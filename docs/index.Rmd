@@ -54,8 +54,8 @@ A continuación descarga el [fichero de datos](https://emilopezcano.github.io/se
 Puedes hacerlo automáticamente con el siguiente código desde RStudio:
 
 ```{r, eval=params$dl, purl=FALSE}
-download.file("https://raw.githubusercontent.com/emilopezcano/seminario_urjc_2019/master/docs/codigo_seminario.R", "codigo_seminario.R")
-download.file("https://emilopezcano.github.io/seminario_urjc_2019/mass.rds", "mass.rds")
+download.file("https://raw.githubusercontent.com/emilopezcano/seminario_urjc_2021/master/codigo_seminario.R", "codigo_seminario.R")
+download.file("https://emilopezcano.github.io/seminario_urjc_2021/mass.rds", "mass.rds")
 ```
 
 Comprueba que tienes un fichero con extensión .R y otro con extensión .rds
